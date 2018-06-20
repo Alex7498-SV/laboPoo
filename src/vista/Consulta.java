@@ -56,7 +56,10 @@ public class Consulta extends JFrame {
         container.add(lblClasificacion);
         container.add(lblAño);
         container.add(lblProy);
+        //----------------------
         container.add(nombre);
+        container.add(director);
+        container.add(año);
         container.add(clasificacion);
         container.add(pais);
         container.add(si);
@@ -93,7 +96,9 @@ public class Consulta extends JFrame {
     private void formulario() {
         nombre = new JTextField();
         clasificacion = new JComboBox();
+        director = new JTextField();
         pais = new JTextField();
+        año = new JTextField();
         si = new JRadioButton("si", true);
         no = new JRadioButton("no");
         resultados = new JTable();
@@ -106,7 +111,7 @@ public class Consulta extends JFrame {
         table = new JPanel();
 
         clasificacion.addItem("G");
-        clasificacion.addItem("PG");
+        clasificacion.addItem("PG-13");
         clasificacion.addItem("14A");
         clasificacion.addItem("18A");
         clasificacion.addItem("R");
@@ -120,18 +125,18 @@ public class Consulta extends JFrame {
         director.setBounds(140, 60, ANCHOC, ALTOC);
         pais.setBounds(140, 100, ANCHOC, ALTOC);
         año.setBounds(140, 180, ANCHOC, ALTOC);
-        proyeccion.setBounds(140, 220, ANCHOC, ALTOC);
-        si.setBounds(140, 140, 50, ALTOC);
-        no.setBounds(210, 140, 50, ALTOC);
+        //proyeccion.setBounds(140, 220, ANCHOC, ALTOC);
+        si.setBounds(140, 220, 50, ALTOC);
+        no.setBounds(210, 220, 50, ALTOC);
 
         buscar.setBounds(300, 10, ANCHOC, ALTOC);
-        insertar.setBounds(10, 210, ANCHOC, ALTOC);
-        actualizar.setBounds(150, 210, ANCHOC, ALTOC);
-        eliminar.setBounds(300, 210, ANCHOC, ALTOC);
-        limpiar.setBounds(450, 210, ANCHOC, ALTOC);
+        insertar.setBounds(10, 270, ANCHOC, ALTOC);
+        actualizar.setBounds(150, 270, ANCHOC, ALTOC);
+        eliminar.setBounds(300, 270, ANCHOC, ALTOC);
+        limpiar.setBounds(450, 270, ANCHOC, ALTOC);
 
         resultados = new JTable();
-        table.setBounds(10, 300, 600, 300);
+        table.setBounds(10, 300, 560, 200);
         table.add(new JScrollPane(resultados));
 
     }
@@ -179,10 +184,11 @@ public class Consulta extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(nombre.getText(), clasificacion.getSelectedItem().toString(), Integer.parseInt(pais.getText()), true);
-
+                
+                Filtro f = new Filtro(nombre.getText(), director.getText(), pais.getText(), clasificacion.getSelectedItem().toString(), Integer.parseInt(año.getText()), true);
+                
                 if (no.isSelected()) {
-                    f.setExistencia(false);
+                    f.setEn_proyeccion(false);
                 }
 
                 if (fd.create(f)) {
@@ -199,10 +205,10 @@ public class Consulta extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(nombre.getText(), clasificacion.getSelectedItem().toString(), Integer.parseInt(pais.getText()), true);
+                Filtro f = new Filtro(nombre.getText(), director.getText(), pais.getText(), clasificacion.getSelectedItem().toString(), Integer.parseInt(año.getText()), true);
 
                 if (no.isSelected()) {
-                    f.setExistencia(false);
+                    f.setEn_proyeccion(false);
                 }
 
                 if (fd.update(f)) {
@@ -219,7 +225,7 @@ public class Consulta extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(nombre.getText(), clasificacion.getSelectedItem().toString(), Integer.parseInt(pais.getText()), true);
+                Filtro f = new Filtro(nombre.getText(), director.getText(), pais.getText(), clasificacion.getSelectedItem().toString(), Integer.parseInt(año.getText()), true);
                 if (fd.delete(nombre.getText())) {
                     JOptionPane.showMessageDialog(null, "Filtro eliminado con éxito");
                     limpiarCampos();
@@ -239,11 +245,11 @@ public class Consulta extends JFrame {
                     JOptionPane.showMessageDialog(null, "El Filtro buscado no ha sido encontrado");
                 } else {
 
-                    nombre.setText(f.getCodigo());
-                    clasificacion.setSelectedItem(f.getMarca());
-                    pais.setText(Integer.toString(f.getStock()));
+                    nombre.setText(f.getNombre());
+                    clasificacion.setSelectedItem(f.getClasificacion());
+                    pais.setText(f.getPais());
 
-                    if (f.getExistencia()) {
+                    if (f.isEn_proyeccion()) {
                         si.setSelected(true);
                     } else {
                         no.setSelected(true);
@@ -262,7 +268,7 @@ public class Consulta extends JFrame {
 
     public void limpiarCampos() {
         nombre.setText("");
-        clasificacion.setSelectedItem("FRAM");
+        clasificacion.setSelectedItem("G");
         pais.setText("");
 
     }

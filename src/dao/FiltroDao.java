@@ -27,12 +27,12 @@ public class FiltroDao implements metodos<Filtro> {
         PreparedStatement ps;
         try {
             ps = con.getCnx().prepareStatement(SQL_INSERT);
-            ps.setString(1, g.getNombre());
-            ps.setString(2, g.getDirector());
-            ps.setString(3, g.getPais());
-            ps.setString(4, g.getClasificacion());
-            ps.setInt(5, g.getAnnio());
-            ps.setBoolean(6, g.isEn_proyeccion());
+            ps.setString(2, g.getNombre());
+            ps.setString(3, g.getDirector());
+            ps.setString(4, g.getPais());
+            ps.setString(5, g.getClasificacion());
+            ps.setInt(6, g.getAnnio());
+            ps.setBoolean(7, g.isEn_proyeccion());
             
             if (ps.executeUpdate() > 0) {
                 return true;
@@ -71,12 +71,12 @@ public class FiltroDao implements metodos<Filtro> {
         try {
             System.out.println(c.getNombre());
             ps = con.getCnx().prepareStatement(SQL_UPDATE);
-            ps.setString(1, c.getNombre());
-            ps.setString(2, c.getDirector());
-            ps.setString(3, c.getPais());
-            ps.setString(4, c.getClasificacion());
-            ps.setInt(5, c.getAnnio());
-            ps.setBoolean(6, c.isEn_proyeccion());
+            ps.setString(2, c.getNombre());
+            ps.setString(3, c.getDirector());
+            ps.setString(4, c.getPais());
+            ps.setString(5, c.getClasificacion());
+            ps.setInt(6, c.getAnnio());
+            ps.setBoolean(7, c.isEn_proyeccion());
             if (ps.executeUpdate() > 0) {
                 return true;
             }
@@ -101,7 +101,7 @@ public class FiltroDao implements metodos<Filtro> {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                f = new Filtro(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getBoolean(6));
+                f = new Filtro(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getBoolean(7));
             }
             rs.close();
         } catch (SQLException ex) {
@@ -125,7 +125,8 @@ public class FiltroDao implements metodos<Filtro> {
             rs = s.executeQuery(SQL_READALL);
 
             while (rs.next()) {
-                all.add(new Filtro(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getBoolean(6)));
+               
+                all.add(new Filtro(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getBoolean(7)));
             }
             rs.close();
         } catch (SQLException ex) {
