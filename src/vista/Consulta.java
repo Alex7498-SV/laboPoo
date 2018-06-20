@@ -125,6 +125,7 @@ public class Consulta extends JFrame {
         director.setBounds(140, 60, ANCHOC, ALTOC);
         pais.setBounds(140, 100, ANCHOC, ALTOC);
         año.setBounds(140, 180, ANCHOC, ALTOC);
+        clasificacion.setBounds(140, 140, ANCHOC, ALTOC);
         //proyeccion.setBounds(140, 220, ANCHOC, ALTOC);
         si.setBounds(140, 220, 50, ALTOC);
         no.setBounds(210, 220, 50, ALTOC);
