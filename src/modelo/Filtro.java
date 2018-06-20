@@ -2,76 +2,73 @@
 package modelo;
 
 public class Filtro {
-    private int id;
-    private String codigo;
-    private String marca;
-    private int stock;
-    private boolean existencia;
+    private String nombre;
+    private String director;
+    private String pais;
+    private String clasificacion;
+    private int annio;
+    private boolean en_proyeccion;
 
     public Filtro() {
     }
 
-    public Filtro(int id, String codigo, String marca, int stock, boolean existencia) {
-        this.id = id;
-        this.codigo = codigo;
-        this.marca = marca;
-        this.stock = stock;
-        this.existencia = existencia;
-    }
-    
-    public Filtro(String codigo, String marca, int stock, boolean existencia) {
-        this.codigo = codigo;
-        this.marca = marca;
-        this.stock = stock;
-        this.existencia = existencia;
-    }
-    
-    public Filtro(String marca, int stock, boolean existencia) {
-        this.marca = marca;
-        this.stock = stock;
-        this.existencia = existencia;
+    public Filtro(String nombre, String director, String pais, String clasificacion, int annio, boolean en_proyeccion) {
+        this.nombre = nombre;
+        this.director = director;
+        this.pais = pais;
+        this.clasificacion = clasificacion;
+        this.annio = annio;
+        this.en_proyeccion = en_proyeccion;
     }
 
-    public int getId() {
-        return id;
+
+    public String getNombre() {
+        return nombre;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getDirector() {
+        return director;
     }
 
-    public int getStock() {
-        return stock;
+    public void setDirector(String director) {
+        this.director = director;
     }
 
-    public boolean getExistencia() {
-        return existencia;
+    public String getPais() {
+        return pais;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public String getClasificacion() {
+        return clasificacion;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setClasificacion(String clasificacion) {
+        this.clasificacion = clasificacion;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public int getAnnio() {
+        return annio;
     }
 
-    public void setExistencia(boolean existencia) {
-        this.existencia = existencia;
+    public void setAnnio(int annio) {
+        this.annio = annio;
     }
-    
+
+    public boolean isEn_proyeccion() {
+        return en_proyeccion;
+    }
+
+    public void setEn_proyeccion(boolean en_proyeccion) {
+        this.en_proyeccion = en_proyeccion;
+    }
     
     
 }

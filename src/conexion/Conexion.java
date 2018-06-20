@@ -38,7 +38,7 @@ public class Conexion {
         user = "root";
         pass = "";
         driver = "com.mysql.jdbc.Driver";
-        url = "jdbc:mysql://localhost/noc";
+        url = "jdbc:mysql://localhost/bdcine";
     }
 
     public Connection getCnx() {
