@@ -70,7 +70,7 @@ public class Consulta extends JFrame {
         container.add(eliminar);
         container.add(limpiar);
         container.add(table);
-        setSize(800, 800);
+        setSize(700, 600);
         eventos();
 
     }
@@ -206,7 +206,7 @@ public class Consulta extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(nombre.getText(), director.getText(), pais.getText(), clasificacion.getSelectedItem().toString(), Integer.parseInt(año.getText()), true);
+                Filtro f = new Filtro(nombre.getText(), true);//, director.getText(), pais.getText(), clasificacion.getSelectedItem().toString(), true);
 
                 if (no.isSelected()) {
                     f.setEn_proyeccion(false);
@@ -226,7 +226,7 @@ public class Consulta extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FiltroDao fd = new FiltroDao();
-                Filtro f = new Filtro(nombre.getText(), director.getText(), pais.getText(), clasificacion.getSelectedItem().toString(), Integer.parseInt(año.getText()), true);
+                Filtro f = new Filtro(nombre.getText());//, director.getText(), pais.getText(), clasificacion.getSelectedItem().toString(), Integer.parseInt(año.getText()), true);
                 if (fd.delete(nombre.getText())) {
                     JOptionPane.showMessageDialog(null, "Filtro eliminado con éxito");
                     limpiarCampos();
@@ -249,7 +249,9 @@ public class Consulta extends JFrame {
                     nombre.setText(f.getNombre());
                     clasificacion.setSelectedItem(f.getClasificacion());
                     pais.setText(f.getPais());
-
+                    director.setText(f.getDirector());
+                    año.setText(Integer.toString(f.getAnnio()));
+                    
                     if (f.isEn_proyeccion()) {
                         si.setSelected(true);
                     } else {
@@ -271,6 +273,9 @@ public class Consulta extends JFrame {
         nombre.setText("");
         clasificacion.setSelectedItem("G");
         pais.setText("");
+        director.setText("");
+        año.setText("");
+                
 
     }
 

@@ -20,7 +20,23 @@ public class Filtro {
         this.annio = annio;
         this.en_proyeccion = en_proyeccion;
     }
+    public Filtro(String nombre, String director, String pais, String clasificacion, boolean en_proyeccion) {
+        this.nombre = nombre;
+        this.director = director;
+        this.pais = pais;
+        this.clasificacion = clasificacion;
+        this.en_proyeccion = en_proyeccion;
+    }
+    public Filtro(String nombre, boolean en_proyeccion) {
+        this.nombre = nombre;
+        this.en_proyeccion = en_proyeccion;
+    }
+    
+    public Filtro(String nombre) {
+        this.nombre = nombre;
+    }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public String getNombre() {
         return nombre;

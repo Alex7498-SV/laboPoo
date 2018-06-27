@@ -16,7 +16,7 @@ import modelo.Filtro;
 public class FiltroDao implements metodos<Filtro> {
 
     private static final String SQL_INSERT = "INSERT INTO movie (nombre, director, pais, clasificacion, anio, en_proyeccion) VALUES(?,?,?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE movie SET  director = ?, pais = ?, clasificacion = ?, anio = ?, en_proyeccion = ? WHERE nombre = ?";
+    private static final String SQL_UPDATE = "UPDATE movie SET  en_proyeccion = ? WHERE nombre = ?";
     private static final String SQL_DELETE = "DELETE FROM movie WHERE nombre = ?";
     private static final String SQL_READ = "SELECT * FROM movie WHERE nombre = ?";
     private static final String SQL_READALL = "SELECT * FROM movie";
@@ -27,12 +27,12 @@ public class FiltroDao implements metodos<Filtro> {
         PreparedStatement ps;
         try {
             ps = con.getCnx().prepareStatement(SQL_INSERT);
-            ps.setString(2, g.getNombre());
-            ps.setString(3, g.getDirector());
-            ps.setString(4, g.getPais());
-            ps.setString(5, g.getClasificacion());
-            ps.setInt(6, g.getAnnio());
-            ps.setBoolean(7, g.isEn_proyeccion());
+            ps.setString(1, g.getNombre());
+            ps.setString(2, g.getDirector());
+            ps.setString(3, g.getPais());
+            ps.setString(4, g.getClasificacion());
+            ps.setInt(5, g.getAnnio());
+            ps.setBoolean(6, g.isEn_proyeccion());
             
             if (ps.executeUpdate() > 0) {
                 return true;
@@ -72,11 +72,11 @@ public class FiltroDao implements metodos<Filtro> {
             System.out.println(c.getNombre());
             ps = con.getCnx().prepareStatement(SQL_UPDATE);
             ps.setString(2, c.getNombre());
-            ps.setString(3, c.getDirector());
-            ps.setString(4, c.getPais());
-            ps.setString(5, c.getClasificacion());
-            ps.setInt(6, c.getAnnio());
-            ps.setBoolean(7, c.isEn_proyeccion());
+//            ps.setString(1, c.getDirector());
+//            ps.setString(2, c.getPais());
+//            ps.setString(3, c.getClasificacion());
+//            ps.setInt(4, c.getAnnio());
+            ps.setBoolean(1, c.isEn_proyeccion());
             if (ps.executeUpdate() > 0) {
                 return true;
             }
